@@ -1,7 +1,7 @@
 const http = require('node:http')
 const { getHandler } = require('./getHandler.js')
 
-const PORT = 3247
+const PORT = 3248
 
 const server = http.createServer(async (
     req,
