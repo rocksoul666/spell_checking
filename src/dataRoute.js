@@ -1,5 +1,6 @@
 const dictionaryImport = import('dictionary-en');
 const nspell = require('nspell')
+const db = require('./db');
 
 async function dataRoute(
     req,
@@ -8,6 +9,9 @@ async function dataRoute(
 ) {
     res.writeHead(200, { 'Content-Type': 'text/plain' })
     const response = await checkSpelling(reqBody.word)
+    const query = 'INSERT INTO requests (word, response) VALUES ($1, $2)'
+    const values = [reqBody.word, response]
+    await db.query(query, values)
     res.end(response)
 }
 
