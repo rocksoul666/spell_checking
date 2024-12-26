@@ -1,7 +1,7 @@
 const http = require('node:http')
 const { getHandler } = require('./getHandler.js')
 
-const PORT = 3249
+const PORT = 3000
 
 const server = http.createServer(async (
     req,
@@ -34,4 +34,4 @@ const server = http.createServer(async (
     })
 })
 
-server.listen(PORT, '127.0.0.1', () => console.log(`http://127.0.0.1:${PORT}`))
+server.listen(PORT, () => console.log(`http://localhost:${PORT}`))

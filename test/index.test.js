@@ -1,13 +1,13 @@
 require('@babel/register');
-const { dataRoute } = require('../src/dataRoute');
+const { rootRoute } = require('../src/rootRoute');
 const { getHandler } = require('../src/getHandler');
 
 describe('getHandler test', () => {
     it('getHandler', () => {
         const result = getHandler({
-            url: '/data'
+            url: '/'
         })
 
-        expect(result).toBe(dataRoute)
+        expect(result).toBe(rootRoute)
     })
 })
