@@ -5,17 +5,19 @@ function rootRoute(
     res
 ) {
     res.writeHead(200, { 'Content-Type': 'text/html' })
-    
-    res.end(`<!DOCTYPE html>
+
+    res.end(`
+        <!DOCTYPE html>
       <html lang="en">
       <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
       </head>
       <body>
-      
+          <h1>Type your name</h1>
+          <input type="text" id="nameInput" value="Anonymous">
           <h1>Type a word to spell-check</h1>
-          <input type="text" id="userInput" placeholder="Enter something...">
+          <input type="text" id="userInput" placeholder="Enter a word to spell-check.">
           <button onclick="sendInput()">Submit</button>
           <br/>
           <div id="output"></div>
@@ -23,6 +25,7 @@ function rootRoute(
           <script>
               function sendInput() {
                   const word = document.getElementById('userInput').value;
+                  const name = document.getElementById('nameInput').value;
                   const outputDiv = document.getElementById('output');
       
                   fetch('/data', {
@@ -30,7 +33,7 @@ function rootRoute(
                       headers: {
                           'Content-Type': 'application/json'
                       },
-                      body: JSON.stringify({ word })
+                      body: JSON.stringify({ word, name })
                   })
                   .then(response => response.text())
                   .then(data => {
@@ -44,7 +47,8 @@ function rootRoute(
           </script>
       
       </body>
-      </html>`)
+      </html>
+      `)
 }
 
 module.exports = {
